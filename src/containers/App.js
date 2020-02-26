@@ -19,6 +19,11 @@ class App extends React.Component {
     this.setState({searchfield: event.target.value});
   }
 
+  onCardClick = (event) => {
+    this.setState({searchfield: event.target.id});
+  }
+
+
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
@@ -35,7 +40,7 @@ class App extends React.Component {
         <SearchBox searchChange={this.onSearchChange} />
         <Scroll>
           <ErrorBoundary>
-            <CardList robots={filteredRobots} />
+            <CardList robots={filteredRobots} cardClick={this.onCardClick} />
           </ErrorBoundary>
         </Scroll>
       </div>
